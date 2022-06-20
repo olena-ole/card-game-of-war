@@ -6,6 +6,8 @@ body {
     margin: 0;
     background: url(img/table.png);
     background-size: cover;
+    font-family: 'Exo 2', sans-serif;
+    color: #fff;
 }
 
 .container {
@@ -13,21 +15,53 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
+.header {
+    align-self: flex-start;
+    display: flex;
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .btn {
-    background-color: yellow;
+    background-color: #fff100;
     border: none;
     font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .draw-btn {
     padding: .5em;
     font-size: 1.5rem;
+    align-self: stretch;
 }
 
 .shuffle-btn {
-    align-self: start;
     padding: .25em;
     font-size: 1.15rem;
+    margin-right: 1em;
+}
+
+.card-slot {
+    width: 120px;
+    height: 166px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.card-slot > img {
+    width: 100%;
+}
+
+.card-slot:first-of-type {
+    margin-bottom: 1em;
 }

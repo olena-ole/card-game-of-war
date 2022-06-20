@@ -3,7 +3,7 @@
 let deckId;
 const newDeckBtn = document.getElementById('new-deck');
 const drawBtn = document.getElementById('draw');
-const cardsWrapper = document.getElementById('cards-wrapper');
+const cardSlots = document.querySelectorAll('.card-slot');
 
 function getNewDeck() {
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
@@ -12,19 +12,20 @@ function getNewDeck() {
 };
 
 function renderCards(arr) {
-    let cardsHtml = '';
-    for (let card of arr) {
-        cardsHtml += `
-            <img src="${card.image}" alt ="">
-        `
-    }
-    cardsWrapper.innerHTML = cardsHtml;
-}
+    for (let i = 0; i < cardSlots.length; i++) {
+        cardSlots[i].innerHTML = `
+            <img src="${arr[i].image}" alt ="">
+        `;
+    };
+};
 
 function drawNewCards() {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
         .then(res => res.json())
-        .then(data => renderCards(data.cards));
+        .then(data => {
+            console.log(data.cards);
+            renderCards(data.cards);
+        });
 }
 
 newDeckBtn.addEventListener('click', getNewDeck);
