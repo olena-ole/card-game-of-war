@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: url(img/table.png);
+    background-size: cover;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn {
+    background-color: yellow;
+    border: none;
+    font-weight: 700;
+}
+
+.draw-btn {
+    padding: .5em;
+    font-size: 1.5rem;
+}
+
+.shuffle-btn {
+    align-self: start;
+    padding: .25em;
+    font-size: 1.15rem;
+}
