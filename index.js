@@ -13,6 +13,7 @@ function getNewDeck() {
         .then(data => {
             deckId = data.deck_id;
             remainingCards.textContent = `Remaining cards: ${data.remaining}`;
+            drawBtn.disabled = false;
         });
 };
 
@@ -58,6 +59,10 @@ function drawNewCards() {
             defineWinner(data.cards);
             renderCards(data.cards);
             remainingCards.textContent = `Remaining cards: ${data.remaining}`;
+
+            if (data.remaining === 0) {
+                drawBtn.disabled = true;
+            }
         });
 };
 

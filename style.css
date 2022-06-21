@@ -50,6 +50,10 @@ body {
     align-self: stretch;
 }
 
+.draw-btn:disabled {
+    cursor: not-allowed;
+}
+
 .shuffle-btn {
     padding: .25em;
     font-size: 1.15rem;
