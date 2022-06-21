@@ -75,7 +75,14 @@ function drawNewCards() {
 
             if (data.remaining === 0) {
                 drawBtn.disabled = true;
-            }
+                if (compScore > myScore) {
+                    resultTitle.textContent = 'Computer won the game!';
+                } else if (compScore < myScore) {
+                    resultTitle.textContent = 'You won the game!';
+                } else {
+                    resultTitle.textContent = "It's a tie game!";
+                };
+            };
         });
 };
 
