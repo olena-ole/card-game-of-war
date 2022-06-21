@@ -16,15 +16,13 @@ function displayScore() {
     myScoreEl.textContent = `Me: ${myScore}`;
 };
 
-function getNewDeck() {
-    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
-        .then(res => res.json())
-        .then(data => {
-            deckId = data.deck_id;
-            remainingCards.textContent = `Remaining cards: ${data.remaining}`;
-            drawBtn.disabled = false;
-            displayScore();
-        });
+async function getNewDeck() {
+    const res = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
+    const data = await res.json();
+    deckId = data.deck_id;
+    remainingCards.textContent = `Remaining cards: ${data.remaining}`;
+    drawBtn.disabled = false;
+    displayScore();
 };
 
 function renderCards(arr) {
@@ -64,26 +62,25 @@ function defineWinner(arr) {
     };
 };
 
-function drawNewCards() {
-    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
-        .then(res => res.json())
-        .then(data => {
-            defineWinner(data.cards);
-            renderCards(data.cards);
-            displayScore();
-            remainingCards.textContent = `Remaining cards: ${data.remaining}`;
+async function drawNewCards() {
+    const res = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`);
+    const data = await res.json();
+    defineWinner(data.cards);
+    renderCards(data.cards);
+    displayScore();
 
-            if (data.remaining === 0) {
-                drawBtn.disabled = true;
-                if (compScore > myScore) {
-                    resultTitle.textContent = 'Computer won the game!';
-                } else if (compScore < myScore) {
-                    resultTitle.textContent = 'You won the game!';
-                } else {
-                    resultTitle.textContent = "It's a tie game!";
-                };
-            };
-        });
+    remainingCards.textContent = `Remaining cards: ${data.remaining}`;
+
+    if (data.remaining === 0) {
+        drawBtn.disabled = true;
+        if (compScore > myScore) {
+            resultTitle.textContent = 'Computer won the game!';
+        } else if (compScore < myScore) {
+            resultTitle.textContent = 'You won the game!';
+        } else {
+            resultTitle.textContent = "It's a tie game!";
+        };
+    };
 };
 
 newDeckBtn.addEventListener('click', getNewDeck);
