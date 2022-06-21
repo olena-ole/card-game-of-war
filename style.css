@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+h2, p {
+    margin: 0;
+}
+
 body {
     margin: 0;
     background: url(img/table.png);
@@ -21,6 +25,7 @@ body {
 .header {
     align-self: flex-start;
     display: flex;
+    align-items: center;
 }
 
 .cards-wrapper {

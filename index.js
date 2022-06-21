@@ -4,6 +4,8 @@ let deckId;
 const newDeckBtn = document.getElementById('new-deck');
 const drawBtn = document.getElementById('draw');
 const cardSlots = document.querySelectorAll('.card-slot');
+const resultTitle = document.getElementById('result-tite');
+const remainingCards = document.getElementById('remaining-cards')
 
 function getNewDeck() {
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
@@ -38,11 +40,11 @@ function defineWinner(arr) {
     const card1 = stringToNum(arr[0].value);
     const card2 = stringToNum(arr[1].value);
     if (card1 > card2) {
-        console.log('Computer wins!');
+        resultTitle.textContent = 'Computer wins!';
     } else if (card2 > card1) {
-        console.log('You win!');
+        resultTitle.textContent = 'You win!';
     } else {
-        console.log('A Draw!');
+        resultTitle.textContent = "War!";
     };
 };
 
@@ -52,6 +54,7 @@ function drawNewCards() {
         .then(data => {
             defineWinner(data.cards);
             renderCards(data.cards);
+            remainingCards.textContent = `Remaining cards: ${data.remaining}`;
         });
 };
 
