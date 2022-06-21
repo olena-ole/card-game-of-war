@@ -10,7 +10,10 @@ const remainingCards = document.getElementById('remaining-cards')
 function getNewDeck() {
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
         .then(res => res.json())
-        .then(data => deckId = data.deck_id);
+        .then(data => {
+            deckId = data.deck_id;
+            remainingCards.textContent = `Remaining cards: ${data.remaining}`;
+        });
 };
 
 function renderCards(arr) {
